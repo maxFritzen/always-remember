@@ -5,7 +5,6 @@
  * @format
  * @flow strict-local
  */
-import 'react-native-gesture-handler' // This needs to be at top apparantly, for navigation.
 import React from 'react';
 import {
   SafeAreaView,
@@ -24,12 +23,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-    <NavigationContainer>
-       <StatusBar barStyle="dark-content" />
+    <>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -70,7 +68,7 @@ export default function App() {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </NavigationContainer>
+    </>
   );
 }
 
