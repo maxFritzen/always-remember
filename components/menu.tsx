@@ -6,20 +6,37 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
+  TouchableOpacity,
 } from 'react-native';
+import { homeView, createView, archiveView } from '../App';
 
-export const Menu = () => {
+type Props = {
+  changeView: (view: string) => void
+  selectedView: string
+}
+
+export const Menu = ({ changeView, selectedView }: Props) => {
   return (
     <View style={styles.menu}> 
-      <View style={styles.menuItem}>
-        <Text>Home</Text>
-      </View>
-      <View style={styles.menuItem}>
-        <Text>Create</Text>
-      </View>
-      <View style={styles.menuItem}>
-        <Text>Archive</Text>
-      </View>
+      <TouchableOpacity 
+        style={selectedView === homeView ? { ...styles.menuItem, ...styles.selectedMenuItem} : styles.menuItem}
+        onPress={() => changeView(homeView)}
+      >
+          <Text style={selectedView === homeView ? { ...styles.menuItemText, ...styles.menuItemTextSelected} : styles.menuItemText}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={selectedView === createView ? { ...styles.menuItem, ...styles.selectedMenuItem} : styles.menuItem}
+        onPress={() => changeView(createView)}
+      >
+          <Text style={selectedView === createView ? { ...styles.menuItemText, ...styles.menuItemTextSelected} : styles.menuItemText}>Create</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={selectedView === archiveView ? { ...styles.menuItem, ...styles.selectedMenuItem} : styles.menuItem}
+        onPress={() => changeView(archiveView)}
+      >
+          <Text style={selectedView === archiveView ? { ...styles.menuItemText, ...styles.menuItemTextSelected} : styles.menuItemText}>Archive</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -31,12 +48,23 @@ const styles = StyleSheet.create({
     height: 80,
     width: '100%',
     position: 'absolute',
-    top: 0
+    bottom: 0,
+    backgroundColor: 'orange'
   },
   menuItem: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  menuItemText: {
+    color: 'black'
+  },
+  menuItemTextSelected: {
+    color: 'white'
+  },
+  selectedMenuItem: {
+    backgroundColor: 'black',
+    color: 'white'
   },
   scrollView: {
     backgroundColor: '#fdfeff',
